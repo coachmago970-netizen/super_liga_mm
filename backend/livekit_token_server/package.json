@@ -22,10 +22,12 @@
     "jose": "^6.1.0",
     "livekit-server-sdk": "^2.13.0",
     "pino": "^9.8.0",
+    "ws": "^8.21.0",
     "zod": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
+    "@types/ws": "^8.18.1",
     "tsx": "^4.20.2",
     "typescript": "^5.8.3",
     "vitest": "^2.1.8"
