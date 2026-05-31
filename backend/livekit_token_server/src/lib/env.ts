@@ -5,7 +5,14 @@ const nodeProcess = process as NodeJS.Process & {
 };
 
 // Node.js 20+ can load .env natively. This keeps local dev simple.
-nodeProcess.loadEnvFile?.(".env");
+try {
+  nodeProcess.loadEnvFile?.(".env");
+} catch (error) {
+  const maybeErr = error as NodeJS.ErrnoException;
+  if (maybeErr.code !== "ENOENT") {
+    throw error;
+  }
+}
 
 const envSchema = z
   .object({
