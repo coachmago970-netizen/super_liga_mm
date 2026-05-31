@@ -1,0 +1,35 @@
+# Environment and secrets
+.env
+*.env
+!.env.example
+apps/flutter_app/dart_defines.local.json
+apps/flutter_app/dart_defines.mobile.json
+
+# Flutter
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+.metadata
+build/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+android/.gradle
+android/app/debug
+android/app/profile
+android/app/release
+
+# Node
+node_modules/
+dist/
+.npm-cache/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# IDE/OS
+.idea/
+.vscode/
+*.iml
+Thumbs.db
+.DS_Store

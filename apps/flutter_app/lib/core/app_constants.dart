@@ -1,0 +1,3 @@
+const String kServerId = "00000000-0000-0000-0000-000000000100";
+const String kGeneralTextChannelId = "00000000-0000-0000-0000-000000000200";
+const String kVoiceChannelId = "00000000-0000-0000-0000-000000000201";

@@ -1,0 +1,22 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "TEAM_ID.com.superligamm.app"
+        ],
+        "components": [
+          {
+            "/": "/invite/*"
+          },
+          {
+            "/": "/invite",
+            "?": {
+              "code": "*"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "SUPABASE_URL": "https://SEU_PROJETO.supabase.co",
+  "SUPABASE_PUBLISHABLE_KEY": "sb_publishable_xxx",
+  "LIVEKIT_URL": "wss://SEU_PROJETO.livekit.cloud",
+  "BACKEND_BASE_URL": "http://IP_DO_SEU_PC_OU_DOMINIO_BACKEND:8080"
+}
