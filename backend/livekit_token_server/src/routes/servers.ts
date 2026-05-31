@@ -1,6 +1,7 @@
 import type { FastifyInstance } from "fastify";
 import { z } from "zod";
 import { ensureMembership, getMembership, isUserBanned } from "../lib/access.js";
+import { appendMemberJoinedMessage } from "../lib/server-events.js";
 import { uuidLikeSchema } from "../lib/validation.js";
 import { requireAuth } from "../middleware/auth.js";
 
@@ -46,6 +47,15 @@ export async function serverRoutes(app: FastifyInstance): Promise<void> {
           userId: request.authUser.id,
           serverId: parsed.serverId
         });
+
+        try {
+          await appendMemberJoinedMessage({
+            serverId: parsed.serverId,
+            userId: request.authUser.id
+          });
+        } catch (joinEventError) {
+          request.log.warn({ err: joinEventError }, "Failed to append join event message");
+        }
 
         reply.code(201).send({
           ok: true,

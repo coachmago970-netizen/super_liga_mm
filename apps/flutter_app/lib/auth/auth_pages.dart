@@ -100,7 +100,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       context.go("/server");
     } catch (error) {
       if (!mounted) return;
-      setState(() => _error = "Nao foi possivel entrar. Confira e-mail e senha.");
+      final repository = ref.read(authRepositoryProvider);
+      setState(
+        () => _error = repository.mapAuthError(
+          error: error,
+          fallback: "Nao foi possivel entrar. Confira e-mail e senha."
+        )
+      );
       debugPrint("Login error: $error");
     } finally {
       if (mounted) {
@@ -212,7 +218,13 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
       context.go("/email-confirmation");
     } catch (error) {
       if (!mounted) return;
-      setState(() => _error = "Nao foi possivel criar conta agora.");
+      final repository = ref.read(authRepositoryProvider);
+      setState(
+        () => _error = repository.mapAuthError(
+          error: error,
+          fallback: "Nao foi possivel criar conta agora."
+        )
+      );
       debugPrint("Register error: $error");
     } finally {
       if (mounted) {
@@ -335,7 +347,13 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
       });
     } catch (error) {
       if (!mounted) return;
-      setState(() => _error = "Nao foi possivel enviar agora.");
+      final repository = ref.read(authRepositoryProvider);
+      setState(
+        () => _error = repository.mapAuthError(
+          error: error,
+          fallback: "Nao foi possivel enviar agora."
+        )
+      );
       debugPrint("Reset password error: $error");
     } finally {
       if (mounted) {

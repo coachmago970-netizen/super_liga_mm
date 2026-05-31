@@ -10,6 +10,7 @@ import {
   validateInvite
 } from "../lib/invites.js";
 import { enforceInMemoryRateLimit } from "../lib/rate-window.js";
+import { appendMemberJoinedMessage } from "../lib/server-events.js";
 import { supabaseAdmin } from "../lib/supabase.js";
 import { uuidLikeSchema } from "../lib/validation.js";
 import { requireAuth } from "../middleware/auth.js";
@@ -125,6 +126,17 @@ export async function inviteRoutes(app: FastifyInstance): Promise<void> {
         }
 
         await incrementInviteUses(validation.invite);
+      }
+
+      if (!existingMember) {
+        try {
+          await appendMemberJoinedMessage({
+            serverId,
+            userId: request.authUser.id
+          });
+        } catch (joinEventError) {
+          request.log.warn({ err: joinEventError }, "Failed to append join event message");
+        }
       }
 
       reply.send({
